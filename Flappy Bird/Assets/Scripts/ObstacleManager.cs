@@ -6,12 +6,14 @@ public class ObstacleManager : MonoBehaviour
 {
     float spawnRate = 3f;
     float cooldown;
+    ScoreManager scoreManager;
 
     [SerializeField] GameObject obstacle;
     // Start is called before the first frame update
     void Start()
     {
         cooldown = spawnRate;
+        scoreManager = GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreManager>();
     }
 
     // Update is called once per frame
@@ -33,7 +35,7 @@ public class ObstacleManager : MonoBehaviour
         if (cooldown <= 0f)
         {
             SpawnObstacle();
-            cooldown = Random.Range(1f, spawnRate);
+            cooldown = 3 - scoreManager.score / 10;
         }
     }
 }
